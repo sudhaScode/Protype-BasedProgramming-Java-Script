@@ -35,7 +35,7 @@ function Person1(name, stand, rolNo) {
 
 const createTwo = ()=>{
     const obj = new Person1("ram", "earth", 24)
- console.log(obj, "Object created by Conatructor function")
+ console.log(obj, "Object created by Contructor function")
 }
 
 
@@ -140,3 +140,66 @@ const obj = {
   
   const allvalues = Object.values(obj);
   //console.log(allvalues); // all the Values
+
+  //----Inheritance------//
+  class Employee{
+    id;
+    designation;
+    constructor(empId, empDsgn){
+      this.id =empId;
+      this.designation = empDsgn;
+    }
+    packageOffered(packageS){
+       return packageS/12 - (packageS/100)*1;
+    }
+
+  }
+
+  class Developer extends Employee{
+    name;
+    constructor(name, designation, empId){
+      super(empId, designation);
+      this.name = name;
+    }
+    packageOffered(packageS){
+       return packageS/12 - (packageS/100)*1;
+    }
+  }
+  function inheritance(){
+  const developer = new Developer("ram", "Software Engineer", "254282");
+
+
+  
+  console.log("Monthly salary take home of "+developer.name +" is "+ developer.packageOffered(425000).toFixed())
+  console.log(developer, "human develper")
+}
+  //-----Method overriding---//
+class Employeeai{
+  id;
+  designation;
+  constructor(empId, empDsgn){
+    this.id =empId;
+    this.designation = empDsgn;
+  }
+  packageOffered(packageS){
+     return packageS/12 - (packageS/100)*1;
+  }
+
+}
+
+class Developerai extends Employeeai{
+  name;
+  constructor(name, designation, empId){
+    super(empId, designation);
+    this.name = name;
+  }
+  packageOffered(packageS){
+     return packageS/12 - (packageS/100)*4;
+  }
+}
+function mehtodOverrriding(){
+const aideveloper = new Developerai("aibot", "Software Engineer", "254282");
+console.log("Monthly salary take home of "+aideveloper.name +" is "+ aideveloper.packageOffered(425000).toFixed())
+console.log(aideveloper, "ai developer")
+}
+

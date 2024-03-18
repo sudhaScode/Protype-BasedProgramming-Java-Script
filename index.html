@@ -11,254 +11,371 @@
         margin: 20px;
         margin-top: 0;
     }
+    .class-constructor, .class-inheritance{
+      border: 2px solid rgb(54, 240, 147);
+      border-radius: 10px;
+      width: fit-content;
+      padding: 10px;
+      margin: 10px;
+    }
+    .object{
+     margin-top: 20px;
+    }
+    .inheritance, .mehtod-override, .this{
+      margin-top: 10px;
+    }
 </style>
 </head>
 <body style="padding: 5vh;">
     <div ><h3>Objects are created as Prototypes in Java Script, it offers a range variety of functions to work with it. In actual OOPs langauages like java printing a object needs a defined function-toString() to print. if not defined it prints the object reference.</h3></div>
-    <br>
-    <div >
-        <button  onclick="createOne()" >Create a object with Class keyword</button>
-    </div>
-    <br>
-    <div >
-        
-        <button  onclick="createTwo()" >Create a object with Constructor function</button>
-    </div>
-    <br>
-    <div >
-        <div><h2>The big picture of "this" in Java Script</picture></h2></div>
-        <h5>"this" keyword used to reference the current object, it holds the context of object</h5>
-        <p> Evaery object has its own properties and behavoiurs. In Java Script calling s function using "this" keyword controls the flow of it, if the function uses the properties of an object. Here are the two points check <ul >
-            <ol><strong>1. is this call site?</strong></ol>
-            <ol><strong>2. DO I have any extra information?</strong></ol>
-           </ul>
-        </p>
-        <p>The following rules are used to bind a object to a respective function call</p>
-        <div class ="bind-info">
-            <p>
-               <strong> Default Binding:</strong> When a function is called standalone, without any context, the this keyword inside that function refers to the global object (window in browsers, global in Node.js) in non-strict mode. In strict mode, the default binding is undefined.
-  <br>
-<strong> Implicit Binding: </strong>When a function is called as a method of an object, the this keyword inside that function refers to the object that is invoking the function.
-                <br>
-            <strong> Explicit Binding:</strong> You can explicitly set the value of this using methods like call(), apply(), or bind(). These methods allow you to specify the value of this explicitly when calling a function.
-                <br>
-            <strong>New Binding: </strong>When a function is called with the new keyword, this inside the function refers to a newly created object. This is often used with constructor functions to create instances of objects.
-                <br>
-                <br>
-                 these binding have increasing priority or power of these binding rules. In other words, when resolving the value of this, JavaScript follows this order: default binding < implicit binding < explicit binding < new binding.
-                <br>
-            </p>
-        </div>
-        <div>
+      <div  class="object" >
+        <h2 class="accordion-header">
+          <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne"><strong style="font-size: 25px;">Create Object:</strong></button>
+        </h2>
+        <div id = "collapseOne"> 
+          <section class="class-constructor">
+            class Person1 { <br>
+              // this -> class Person<br>
+              constructor(name, stand, rolNo){<br>
+                this.name= name;<br>
+                this.stand = stand;<br>
+                this.rolNo =rolNo;<br>
+              
+              }<br>
+            }<br>
+          
+          const createTwo = ()=>{<br>
+              const obj = new Person1("ram", "earth", 24)<br>
+          console.log(obj, "Object created by Conatructor function")<br>
+          }<br>
+
+          <button  onclick="createOne()" style="margin-left:20%">Create a object with Class keyword</button>
+          <h6 style="text-align: center;">Check console</h6>   
+        </section>
+          <section class="class-constructor">
+          function Person1(name, stand, rolNo) {<br>
+              // this -> class Person
             <br>
-        <h3>Lets dive into actual immplementation, Try in console with below code snippets</h3>
-        <br>
+              this.planet = stand;<br>
+              this.name = name;<br>
+              this.Age = rolNo;<br>
+            }<br>
+
+            const createTwo = ()=>{<br>
+                const obj = new Person1("ram", "earth", 24)<br>
+            console.log(obj, "Object created by Conatructor function")<br>
+            }<br>
+          <button  onclick="createTwo()"style="margin-left: 10%;; margin-top: 10px">Create a object with Constructor function</button>
+          <h6 style="text-align: center;">Check console</h6>  
+        </section>
+        </div> 
+      </div>
+    <br>
+ 
+      <div class="inheritance">
+        <button  class="accordion-button" type="button" data-bs-toggle="collapse"  data-bs-target="#inheritanceCollapse"><h3 ><strong>Inheritance:</strong></h3></button>
+        <div id = "inheritanceCollapse" class="class-inheritance">
+          <p>
+            class Employee{<br>
+              id;
+              designation;<br>
+              constructor(empId, empDsgn){
+                this.id =empId;<br>
+                this.designation = empDsgn;
+              }<br>
+              packageOffered(packageS){
+                 return packageS/12 - (packageS/100)*1;<br>
+              }<br>
+          
+            }
+          
+            class Developer extends Employee{<br>
+              name;
+              constructor(name, designation, empId){<br>
+                super(empId, designation);
+                this.name = name;<br>
+              }
+            }<br>
+            const developer = new Developer("ram", "Software Engineer", "254282");<br>
+          
+            console.log("Monthly salary take home of "+developer.name +" is "+ developer.packageOffered(425000).toFixed())<br>
+            console.log(developer, "human develper")
+          </p>
+          <button  onclick="inheritance()"style="margin-left:200px; margin-top: 10px">Implement Inheritance objects</button>
+          <img src="./source/inheritance.png">
         </div>
-         <div class="accordion" id="accordionExample">
-            
+      </div>
+     <div class="mehtod-override">
+      <button  class="accordion-button" type="button" data-bs-toggle="collapse"  data-bs-target="#inheritanceCollapse"><h4 ><strong>Method Overriding:</strong></h4></button>
+      <div id = "inheritanceCollapse" class="class-inheritance">
+        <p>
+          class Employeeai{<br>
+            id;
+            designation;<br>
+            constructor(empId, empDsgn){
+              this.id =empId;<br>
+              this.designation = empDsgn;
+            }<br>
+            packageOffered(packageS){
+               return packageS/12 - (packageS/100)*1;<br>
+            }<br>
+        
+          }
+        
+          class Developerai extends Employeeai{<br>
+            name;
+            constructor(name, designation, empId){<br>
+              super(empId, designation);
+              this.name = name;<br>
+            }
+            packageOffered(packageS){<br>
+              return packageS/12 - (packageS/100)*4;
+           }<br>
+          }<br>
+          const aideveloper = new Developer("aibot", "Software Engineer", "254282");<br>
+          console.log("Monthly salary take home of "+aideveloper.name +" is "+ aideveloper.packageOffered(425000).toFixed())
+          console.log(aideveloper, "aideveloper")
+                    
+        </p>
+        <button  onclick=" mehtodOverrriding()"style="margin-left:400px; margin-top: 10px;">Implement Method Overriding</button>
+       <img src="./source/methodOverriding.png" class="img-fluid d-block"/>
+      </div>
+     </div>
+    </div>
+  
+    <div class="this">
+      <div><h2>The big picture of "this" in Java Script</picture></h2></div>
+      <h5>"this" keyword used to reference the current object, it holds the context of object</h5>
+      <p> Evaery object has its own properties and behavoiurs. In Java Script calling s function using "this" keyword controls the flow of it, if the function uses the properties of an object. Here are the two points check <ul >
+          <ol><strong>1. is this call site?</strong></ol>
+          <ol><strong>2. DO I have any extra information?</strong></ol>
+         </ul>
+      </p>
+      <p>The following rules are used to bind a object to a respective function call</p>
+      <div class ="bind-info">
+          <p>
+             <strong> Default Binding:</strong> When a function is called standalone, without any context, the this keyword inside that function refers to the global object (window in browsers, global in Node.js) in non-strict mode. In strict mode, the default binding is undefined.
+<br>
+<strong> Implicit Binding: </strong>When a function is called as a method of an object, the this keyword inside that function refers to the object that is invoking the function.
+              <br>
+          <strong> Explicit Binding:</strong> You can explicitly set the value of this using methods like call(), apply(), or bind(). These methods allow you to specify the value of this explicitly when calling a function.
+              <br>
+          <strong>New Binding: </strong>When a function is called with the new keyword, this inside the function refers to a newly created object. This is often used with constructor functions to create instances of objects.
+              <br>
+              <br>
+               these binding have increasing priority or power of these binding rules. In other words, when resolving the value of this, JavaScript follows this order: default binding < implicit binding < explicit binding < new binding.
+              <br>
+          </p>
+      </div>
+      <div>
+          <br>
+      <h3>Lets dive into actual immplementation, Try in console with below code snippets</h3>
+      <br>
+      </div>
+       <div class="accordion" id="accordionExample">
+          
+          <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <h5>Rule 1: default binding.</h5>
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <p>
+                      // "use strict";<br>
+                      function sum() {<br>
+                      // context -> this -> window / undefined<br>
+                      console.log(this, "adsad"); // window / undefined (for strict mode)<br>
+                      }<br>
+
+                      sum(); // is this call site ? YES<br>
+                      // DO I have any extra information ? NO<br>
+                  </p>
+                </div>
+              </div>
+            </div>
             <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <h5>Rule 1: default binding.</h5>
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <p>
-                        // "use strict";<br>
-                        function sum() {<br>
-                        // context -> this -> window / undefined<br>
-                        console.log(this, "adsad"); // window / undefined (for strict mode)<br>
-                        }<br>
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                  <h5>Rule 2: Implicit binding (JS itself determines the Context)</h5>
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <p>
+                      <strong>// EXAMPLE 1:</strong><br>
+                      let obj = {<br>
+                      name: "utkarsh",<br>
+                      standard: 9,<br>
+                      func: function () {<br>
+                          // context -> this -> obj<br>
+                          console.log(this, "func");<br>
+                      },<br>
+                      };<br>
 
-                        sum(); // is this call site ? YES<br>
-                        // DO I have any extra information ? NO<br>
-                    </p>
-                  </div>
+                      obj.func(); // is this a call site ? YES<br>
+                      // DO I have any extra information ? YES (obj) prints utkarsh <br>
+
+                  <strong>// EXAMPLE 2:</strong> <br>
+                      let obj2 = {<br>
+                      name: "akash",<br>
+                      func: function () {<br>
+                          // context -> this -> obj2<br>
+                          console.log(this.name);<br>
+                      },<br>
+                      };<br>
+
+                      let obj = {<br>
+                      name: "ankit",<br>
+                      obj2: obj2,<br>
+                      };<br>
+
+                      obj.obj2.func(); // akash // is this a call site ? YES<br>
+                      // DO I have any extra information ? YES (obj) prints akash <br>
+
+                  <strong>// EXAMPLE 3</strong><br>
+                      let obj = {<br>
+                      name: "akash",<br>
+                      func: function () {<br>
+                          // context - this  -> window<br>
+                          // console.log("hello");<br>
+                          console.log(this); //<br>
+                          console.log(this.name);<br>
+                      },
+                      };
+
+                      setTimeout(obj.func, 3000); //  is this a call site ? NO<br>
+
+                      // BROWSER SIDE<br>
+                      // function setTimeout(callBack, delay) {<br>
+                      //  delay it for delay seconds<br>
+
+                      //   callBack(); // is this call site for func function ? YEs<br>
+                      //   // ANy extra info? NO prints undefined or empty <br> 
+                      // }
+                  </p>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                    <h5>Rule 2: Implicit binding (JS itself determines the Context)</h5>
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <p>
-                        <strong>// EXAMPLE 1:</strong><br>
-                        let obj = {<br>
-                        name: "utkarsh",<br>
-                        standard: 9,<br>
-                        func: function () {<br>
-                            // context -> this -> obj<br>
-                            console.log(this, "func");<br>
-                        },<br>
-                        };<br>
+            </div>
 
-                        obj.func(); // is this a call site ? YES<br>
-                        // DO I have any extra information ? YES (obj) prints utkarsh <br>
-
-                    <strong>// EXAMPLE 2:</strong> <br>
-                        let obj2 = {<br>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                  <h5>Rule 3:  Explicit Binding</h5>
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <p>
+                      // 1. call<br>
+                      // 2. apply<br>
+                      // 3. bind<br>
+                      <br>
+                      let obj2 = {<br>
                         name: "akash",<br>
-                        func: function () {<br>
-                            // context -> this -> obj2<br>
-                            console.log(this.name);<br>
+                        func: function (a, b, c) {<br>
+                          // context -> this -> utkarshPerson<br>
+                      
+                          console.log(this.name);<br>
+                          // console.log(this.name, a, b, c);<br>
                         },<br>
-                        };<br>
-
-                        let obj = {<br>
-                        name: "ankit",<br>
+                      };<br>
+                      <br>
+                      let obj = {<br>
+                        name: "ankitsss",<br>
                         obj2: obj2,<br>
-                        };<br>
+                      };<br>
+                      <br>
+                      let utkarshPerson = {<br>
+                        name: "utkarsh",<br>
+                      };<br>
+                      <br>
+                      obj.obj2.func(9, 9); //  akash   // is thsi a call site ? // YES implicit calling<br> 
+                      <br>
+                      obj.obj2.func.call(obj, 123, 12, 66); // ankitsss<br>
+                      <br>
+                      // obj.obj2.func.apply(obj, [123, 12, 66]); // ankitsss<br>
+                      <br>
+                      const bindedFunction = obj.obj2.func.bind(utkarshPerson);<br>
+                      <br>
+                      
+                        <br>
+                      setTimeout(obj.obj2.func.call(obj), 3000); // prints the obj name  immediately it is not expected
+                      setTimeout(bindedFunction, 3000); //<br>
 
-                        obj.obj2.func(); // akash // is this a call site ? YES<br>
-                        // DO I have any extra information ? YES (obj) prints akash <br>
-
-                    <strong>// EXAMPLE 3</strong><br>
-                        let obj = {<br>
-                        name: "akash",<br>
-                        func: function () {<br>
-                            // context - this  -> window<br>
-                            // console.log("hello");<br>
-                            console.log(this); //<br>
-                            console.log(this.name);<br>
-                        },
-                        };
-
-                        setTimeout(obj.func, 3000); //  is this a call site ? NO<br>
-
-                        // BROWSER SIDE<br>
-                        // function setTimeout(callBack, delay) {<br>
-                        //  delay it for delay seconds<br>
-
-                        //   callBack(); // is this call site for func function ? YEs<br>
-                        //   // ANy extra info? NO prints undefined or empty <br> 
-                        // }
-                    </p>
-                  </div>
+                      
+                      function setTimeout(callBack, delay) {<br>
+                        // delay it for delay seconds<br>
+                        <br>
+                        callBack(); // is this call site for func function ? YEs<br>
+                        // ANy extra info? YES utkarshPerson obj<br>
+                      }<br>
+                      
+                      "this" keyword won't point to the same object in callback functions, in order acheive it use the bind method
+                  </p>
                 </div>
               </div>
 
               <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                    <h5>Rule 3:  Explicit Binding</h5>
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <p>
-                        // 1. call<br>
-                        // 2. apply<br>
-                        // 3. bind<br>
-                        <br>
-                        let obj2 = {<br>
-                          name: "akash",<br>
-                          func: function (a, b, c) {<br>
-                            // context -> this -> utkarshPerson<br>
-                        
-                            console.log(this.name);<br>
-                            // console.log(this.name, a, b, c);<br>
-                          },<br>
-                        };<br>
-                        <br>
-                        let obj = {<br>
-                          name: "ankitsss",<br>
-                          obj2: obj2,<br>
-                        };<br>
-                        <br>
-                        let utkarshPerson = {<br>
-                          name: "utkarsh",<br>
-                        };<br>
-                        <br>
-                        obj.obj2.func(9, 9); //  akash   // is thsi a call site ? // YES implicit calling<br> 
-                        <br>
-                        obj.obj2.func.call(obj, 123, 12, 66); // ankitsss<br>
-                        <br>
-                        // obj.obj2.func.apply(obj, [123, 12, 66]); // ankitsss<br>
-                        <br>
-                        const bindedFunction = obj.obj2.func.bind(utkarshPerson);<br>
-                        <br>
-                        
-                          <br>
-                        setTimeout(obj.obj2.func.call(obj), 3000); // prints the obj name  immediately it is not expected
-                        setTimeout(bindedFunction, 3000); //<br>
-
-                        
-                        function setTimeout(callBack, delay) {<br>
-                          // delay it for delay seconds<br>
-                          <br>
-                          callBack(); // is this call site for func function ? YEs<br>
-                          // ANy extra info? YES utkarshPerson obj<br>
-                        }<br>
-                        
-                        "this" keyword won't point to the same object in callback functions, in order acheive it use the bind method
-                    </p>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
-                        <h5>Rule 4: New Keyword</h5>
-                      </button>
-                    </h2>
-                    <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                        <p>
-                            class Car {<br>
-                              // context -> this -> new -> {}<br>
-                              constructor(model, color) {<br>
-                                this.model = model;<br>
-                                this.color = color;<br>
-                              }<br>
-                              <br>
-                              start() {<br>
-                                console.log(`${this.model} will start.`)
-                              }<br>
-                            }<br>
-                            <br>
-                            const wanagr = new Car("w8", "green"); {}<br>
-                            <br>
-                            
-                            
-                            <br>
-                            function Car(model, color) {<br>
-                              // context -> this -> new -> {}<br>
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
+                      <h5>Rule 4: New Keyword</h5>
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>
+                          class Car {<br>
+                            // context -> this -> new -> {}<br>
+                            constructor(model, color) {<br>
                               this.model = model;<br>
                               this.color = color;<br>
-                            
-                              this.start = function () {<br>
-                                // contex - this -> ferrari<br>
-                                console.log("car is in start mode " + this.model);<br>
-                              };<br>
                             }<br>
-                            
-                            const ferrrari = new Car("v8", "red");<br>
-                            console.log(ferrrari);<br>
                             <br>
-                            ferrrari.start();<br>
-                            <br>
-                            */<br>
-                            <br>
-                            // new keyword -> {},<br>
-                            // and this blank object is given to CLASSES and CONSTRUCTOR FUNCTION as the CONTEXT(this).
-                            <br>
-                            
-                        </p>
-                      </div>
+                            start() {<br>
+                              console.log(`${this.model} will start.`)
+                            }<br>
+                          }<br>
+                          <br>
+                          const wanagr = new Car("w8", "green"); {}<br>
+                          <br>
+                          
+                          
+                          <br>
+                          function Car(model, color) {<br>
+                            // context -> this -> new -> {}<br>
+                            this.model = model;<br>
+                            this.color = color;<br>
+                          
+                            this.start = function () {<br>
+                              // contex - this -> ferrari<br>
+                              console.log("car is in start mode " + this.model);<br>
+                            };<br>
+                          }<br>
+                          
+                          const ferrrari = new Car("v8", "red");<br>
+                          console.log(ferrrari);<br>
+                          <br>
+                          ferrrari.start();<br>
+                          <br>
+                          */<br>
+                          <br>
+                          // new keyword -> {},<br>
+                          // and this blank object is given to CLASSES and CONSTRUCTOR FUNCTION as the CONTEXT(this).
+                          <br>
+                          
+                      </p>
                     </div>
                   </div>
-              </div>
-              
+                </div>
+            </div>
+            
 
-         </div>
-        
-      
+       </div>
+      </div>
      
-    </div>
+   
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
